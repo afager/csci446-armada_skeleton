@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   filter_parameter_logging :password
   helper_method :current_user_session, :current_user, :home_url_for
+  # Added this code
+  #before_filter :authenticate
 
   # A simple route for the application home page or root_url.
   def show

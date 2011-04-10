@@ -127,3 +127,106 @@ end
 
 # All that for this:
 Rails.boot!
+project_type = :rails
+project_path = Compass::AppIntegration::Rails.root
+environment = Compass::AppIntegration::Rails.env
+http_path = "/"
+css_dir = "tmp/stylesheets"
+sass_dir = "app/stylesheets"
+
+# To enable relative paths to assets via compass helper functions. Uncomment:
+# relative_assets = true
+# An example database configuration file. Copy to database.yml.
+
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
+  
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
+# Heroku generates database.yml for staging and production.RAILS_GEM_VERSION = '2.3.11' unless defined? RAILS_GEM_VERSION
+
+require File.join(File.dirname(__FILE__), 'boot')
+
+Rails::Initializer.run do |config|
+
+  # Do not declare gems here! We're using bundler. See Gemfile.
+
+  config.autoload_paths += %W( #{RAILS_ROOT}/app/sweepers #{RAILS_ROOT}/app/mailers )
+
+  # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
+
+  config.time_zone = 'UTC'
+
+end
+
+Haml::Template.options[:attr_wrapper] = '"'
+# heroku_san configuration, for easy multi-env deployments to heroku.
+# Otherwise you've got to append --app appname all the fucking time.
+#
+# Format:
+# 
+# <heroku_san shorthand name>:
+#   app: <Heroku app name>
+#   config:
+#     - <Heroku config:var name>: <Heroku config:var value>
+
+production: 
+  app: evening-sky-672
+  config:
+    BUNDLE_WITHOUT: "development:test"
+
+staging:
+  app: severe-autumn-903
+  config: &default
+   BUNDLE_WITHOUT: "development:test"
+begin
+  require "rubygems"
+  require "bundler"
+rescue LoadError
+  raise "Could not load the bundler gem. Install it with `gem install bundler`."
+end
+
+if Gem::Version.new(Bundler::VERSION) <= Gem::Version.new("0.9.24")
+  raise RuntimeError, "Your bundler version is too old for Rails 2.3." +
+   "Run `gem install bundler` to upgrade."
+end
+
+begin
+  # Set up load paths for all bundled gems
+  ENV["BUNDLE_GEMFILE"] = File.expand_path("../../Gemfile", __FILE__)
+  Bundler.setup
+rescue Bundler::GemNotFound
+  raise RuntimeError, "Bundler couldn't find some gems." +
+    "Did you run `bundle install`?"
+end
+ActionController::Routing::Routes.draw do |map|
+
+  map.root :controller => "application", :action => "show"
+  map.logout 'logout', :controller => "user_sessions", :action => "destroy"
+  map.login 'login', :controller => "user_sessions", :action => "new"
+  map.resources :user_sessions, :only => [:new, :create, :destroy]
+  map.resources :password_resets, :only => [:new, :create, :edit, :update]
+  
+  map.register 'register', :controller => 'users', :action => 'new'
+  map.resources :users, :only => [:new, :create]
+
+  map.namespace :admin do |admin|
+    admin.resources :roles
+    admin.resources :users
+    admin.root :controller => 'admin', :action => 'index'
+  end
+
+  map.namespace :members do |members|
+    members.resources :users, :only => [:show, :edit, :update]
+    members.root :controller => 'members', :action => 'index'
+  end
+
+end
+

@@ -9,11 +9,11 @@
 #     - <Heroku config:var name>: <Heroku config:var value>
 #
 production: 
-  app: FIXME-production
+  app: evening-sky-672
   config:
     BUNDLE_WITHOUT: "development:test"
 
 staging:
-  app: FIXME-staging
+  app: severe-autumn-903
   config: &default
     BUNDLE_WITHOUT: "development:test"
