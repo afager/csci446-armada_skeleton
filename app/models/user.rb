@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
 
   acts_as_authentic
+  
+  validates_presence_of :role
 
   has_paper_trail
   
@@ -25,6 +27,10 @@ class User < ActiveRecord::Base
   
   def is_admin?
     role_symbols.include?(:administrator) || role_symbols.include?(:developer)
+  end
+  
+  def full_name
+	first_name+" "+last_name
   end
 
   private
