@@ -8,8 +8,7 @@ class Role < ActiveRecord::Base
 
   has_many :users
 
-end
-
+  
 protected
 	
 	def before_validation
@@ -21,6 +20,10 @@ protected
 	def to_s
 	  name
 	end
+  
+end
+
+
 
 
 # == Schema Information
