@@ -1,0 +1,17 @@
+- content_for :title do
+  Editing #{ARMADA_COMPONENT}
+
+%h2
+  Editing "#{@corvette}"
+  .action
+    = link_to image_tag('icon_small_larrow.png')
+    = link_to 'back to list', members_corvettes_path
+  .action
+    = link_to image_tag('icon_small_delete.png'), members_corvette_path(@corvette), :method => :delete, :confirm => 'Are you sure?'
+    = link_to 'delete', members_corvette_path(@corvette), :method => :delete, :confirm => 'Are you sure?'
+  .action
+    = image_tag('icon_small_star_inactive.png')
+    
+= render :partial => "form", :locals => {:corvette => @corvette}
+
+

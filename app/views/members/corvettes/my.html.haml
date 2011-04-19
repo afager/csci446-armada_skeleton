@@ -1,0 +1,21 @@
+- content_for :title do
+  My #{ARMADA_COMPONENT.pluralize}
+
+.important_button= new_corvette_button
+
+%h2 My #{ARMADA_COMPONENT.pluralize}
+%p
+  = pluralize @corvettes.size, 'corvette'
+  as of
+  = "#{Time.now.to_s(:date)}."
+
+- if !@corvettes.empty?
+  %p.paginator= will_paginate(@corvettes)
+  .corvettes
+    %table
+      = render :partial => "corvette", :collection => @corvettes
+- else
+  %p
+    You haven't created any #{ARMADA_COMPONENT.downcase.pluralize} in the system. What are you waiting for,
+    = "#{new_corvette_link}."
+    What you chicken, bakbakbak.

@@ -1,4 +1,5 @@
 %ul.menubar
-  %li= link_to 'home', home_url_for(current_user), :title => 'Home'
-  = admin_menu_items(current_user)
-  %li= link_to 'TODO', '#', :title => 'TODO'
+  %li= link_to 'home', home_url_for(current_user), :title => 'Home' = admin_menu_items(current_user)
+  %li= link_to ARMADA_COMPONENT.downcase.pluralize, members_corvettes_path
+  %li= link_to "my #{ARMADA_COMPONENT.downcase.pluralize}", my_members_corvettes_path
+  %li= link_to "my favorites", favorites_members_corvettes_path

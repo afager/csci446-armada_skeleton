@@ -1,0 +1,26 @@
+- form_for [:members, corvette], :html => { :multipart => true } do |f|
+  = f.error_messages
+  .form_left
+    = image_tag corvette.photo.url(:medium)
+    %p
+      = f.label :photo
+      = f.file_field :photo
+  .form_right
+    %p
+      = f.label :name
+      %br
+      = f.text_field :name
+    %p
+      = f.label :description
+      %br
+      = f.text_area :description, :size => '50x5'
+    %p
+      = f.label :material_name
+      %br
+      = f.text_field :material_name
+    %p
+      = f.label :price
+      %br
+      = f.text_field :price
+    %p
+      = f.submit "Save this #{ARMADA_COMPONENT}", :style => 'font-size:1.5em;'

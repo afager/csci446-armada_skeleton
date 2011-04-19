@@ -1,0 +1,10 @@
+- content_for :title do
+  New #{ARMADA_COMPONENT}
+
+%h2
+  New #{ARMADA_COMPONENT}
+  .action
+    = link_to image_tag('icon_small_larrow.png'), members_corvettes_path
+    = link_to 'back to list', members_corvettes_path
+
+= render :partial => "form", :locals => {:corvette => @corvette}

@@ -1,0 +1,11 @@
+%tr
+  %td= link_to image_tag(corvette.photo.url(:thumb)), corvette_path(corvette)
+  %td
+    = link_to corvette.name, corvette_path(corvette)
+    by #{corvette.creator}
+    = "(#{pluralize(corvette.price, 'ArdmadaBuck')})"
+    %br
+    = truncate(corvette.description, :length => 75)
+    = link_to 'more', '#'
+  %td
+    = link_to image_tag('icon_small_show.png'), corvette_path(corvette)

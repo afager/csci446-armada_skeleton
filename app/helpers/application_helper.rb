@@ -16,6 +16,14 @@ module ApplicationHelper
     end
   end
   
+  def corvettes_menu_link(user)
+    if user.is_admin?
+      link_to 'corvettes', admin_corvettes_path
+    else
+      link_to 'corvettes', member_corvettes_path
+    end
+  end
+  
   def google_webfont_stylesheet(face)
     "<link rel=\"stylesheet\" type=\"text/css\" href=\"http://fonts.googleapis.com/css?family=#{face}\" />"
   end

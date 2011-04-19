@@ -1,0 +1,31 @@
+- content_for :title do
+  = "corvette #{@corvette}"
+
+%h2
+  = "#{ARMADA_COMPONENT} \"#{@corvette}\""
+  .action
+    = link_to image_tag('icon_small_larrow.png')
+    = link_to 'back to list', corvettes_path
+
+%p
+  Created by
+  = @corvette.creator
+  on
+  = @corvette.created_at.to_s(:date)
+
+.corvette_photo
+  = image_tag @corvette.photo.url(:medium)
+.corvette_data
+  %p
+    %strong Name
+    =h @corvette.name
+  %p
+    %strong Description:
+    =h @corvette.description
+  %p
+    %strong Material name:
+    =h @corvette.mach_name
+  %p
+    %strong Price:
+    =h @corvette.price
+

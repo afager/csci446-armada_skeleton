@@ -10,7 +10,10 @@ class Role < ActiveRecord::Base
 
   
 protected
-	
+	def name=(name)
+      self[:name] = name.strip.downcase
+    end
+  
 	def before_validation
 	  if not name.nil?
 	    self.name = name.strip.downcase

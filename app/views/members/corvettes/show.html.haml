@@ -1,0 +1,39 @@
+- content_for :title do
+  = ARMADA_COMPONENT
+  = @corvette
+
+%h2
+  = "#{ARMADA_COMPONENT} \"#{@corvette}\""
+  .action
+    = link_to image_tag('icon_small_larrow.png')
+    = link_to 'back to list', members_corvettes_path
+  .action
+    = link_to image_tag('icon_small_edit.png'), edit_members_corvette_path(@corvette)
+    = link_to 'edit', edit_members_corvette_path(@corvette)
+  .action
+    = link_to image_tag('icon_small_delete.png'), members_corvette_path(@corvette), :method => :delete, :confirm => 'Are you sure?'
+    = link_to 'delete', members_corvette_path(@corvette), :method => :delete, :confirm => 'Are you sure?'
+  .action
+    = image_tag('icon_small_star_inactive.png')
+
+%p
+  Created by
+  = @corvette.creator
+  on
+  = @corvette.created_at.to_s(:date)
+
+.corvette_photo
+  = image_tag @corvette.photo.url(:medium)
+.corvette_data
+  %p
+    %strong Name
+    =h @corvette.name
+  %p
+    %strong Description:
+    =h @corvette.description
+  %p
+    %strong Material name:
+    =h @corvette.material_name
+  %p
+    %strong Price:
+    =h @corvette.price

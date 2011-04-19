@@ -12,7 +12,7 @@
     #wrapper
       #masthead
         = userbar(current_user)
-        %h1= link_to APP_TITLE, root_path, :title => 'Home Screen'
+        %h1= link_to "#{APP_TITLE} #{ARMADA_COMPONENT}, root_path, :title => 'Home Screen'
         = menubar(current_user)
       #content
         - unless flash.empty?
@@ -21,4 +21,4 @@
               %p= msg
         = yield
       #footer
-        %p &copy; 2011, Team Illogicians, Colorado School of Mines.
+        %p &copy; 2011, #{TEAM_NAME}, Colorado School of Mines.

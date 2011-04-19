@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   
   belongs_to :role, :counter_cache => true
 
+  has_many :corvettes
+  
   default_scope :include => :role
 
   before_create :assign_default_role
@@ -32,7 +34,10 @@ class User < ActiveRecord::Base
   def full_name
 	first_name+" "+last_name
   end
-
+ 
+  def to_s
+    self.full_name
+  end
   private
 
     def assign_default_role

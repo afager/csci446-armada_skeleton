@@ -1,0 +1,22 @@
+- content_for :title do
+  All #{ARMADA_COMPONENT.pluralize}
+
+.important_button= new_corvette_button
+
+%h2 All corvettes
+%p
+  = pluralize @corvettes.size, 'corvette'
+  as of
+  = "#{Time.now.to_s(:date)}."
+
+- if !@corvettes.empty?
+  %p.paginator= will_paginate(@corvettes)
+  .corvettes
+    %table
+      = render :partial => "corvette", :collection => @corvettes
+- else
+  %p
+    There are no corvettes in the system yet. What is this too much car for you?
+    = "#{new_corvette_link}."
+    
+

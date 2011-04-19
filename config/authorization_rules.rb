@@ -2,12 +2,14 @@
 authorization do
   role :member do
     has_permission_on :members_members, :to => :read
+    has_permission_on :members_corvettes, :to => :manage
   end
   role :administrator do
     includes :member
     has_permission_on :admin_admin, :to => :read
     has_permission_on :admin_users, :to => :manage
     has_permission_on :admin_roles, :to => :manage
+    has_permission_on :admin_corvettes, :to => :manage
   end
   role :developer do
     includes :administrator
@@ -16,7 +18,7 @@ end
 
 privileges do
   privilege :manage, :includes => [:create, :read, :update, :delete]
-  privilege :read, :includes => [:index, :show]
+  privilege :read, :includes => [:index, :show, :my, :favorites]
   privilege :create, :includes => :new
   privilege :update, :includes => [:edit]
   privilege :delete, :includes => :destroy

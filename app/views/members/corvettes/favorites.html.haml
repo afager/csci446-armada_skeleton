@@ -1,0 +1,19 @@
+- content_for :title do
+  Favorite #{ARMADA_COMPONENT.pluralize}
+
+.important_button= new_corvette_button
+
+%h2 My Favorite #{ARMADA_COMPONENT.pluralize}
+%p
+  = pluralize @corvettes.size, 'corvette'
+  as of
+  = "#{Time.now.to_s(:date)}."
+
+- if !@corvettes.empty?
+  %p.paginator= will_paginate(@corvettes)
+  .corvettes
+    %table
+      = render :partial => "corvette", :collection => @corvettes
+- else
+  %p
+    You haven't chosen any favorites yet. Why don't you like my speed racers? WHY?

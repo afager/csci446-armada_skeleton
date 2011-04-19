@@ -9,6 +9,7 @@ gem 'compass', '>= 0.10.6'
 gem 'authlogic'
 gem 'declarative_authorization'
 gem 'delayed_job', '~> 2.0.4'
+gem 'aws-s3'
 
 group :development, :test do
   gem 'heroku'
