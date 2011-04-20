@@ -9,6 +9,10 @@ class Role < ActiveRecord::Base
   has_many :users
 
   
+    def to_s
+	  name
+	end
+	
 protected
 	def name=(name)
       self[:name] = name.strip.downcase
@@ -20,9 +24,7 @@ protected
 	  end
 	end
 	 
-	def to_s
-	  name
-	end
+	
   
 end
 

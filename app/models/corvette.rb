@@ -1,9 +1,9 @@
-class Shield < ActiveRecord::Base
+class Corvette < ActiveRecord::Base
 
   has_attached_file :photo,
                     :styles => {
                       :thumb => ["72x72#"],
-                      :medium => ["300x300#"]
+                      :medium => ["250x250#"]
                     },
                     :default_url => '/images/default_corvette.png',
                     :storage => :s3,

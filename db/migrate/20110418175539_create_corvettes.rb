@@ -1,11 +1,11 @@
 # This is the basic migration for the corvette class.
-class Createcorvettes < ActiveRecord::Migration
+class CreateCorvettes < ActiveRecord::Migration
 
   def self.up
     create_table :corvettes do |t|
       t.string :name
       t.text :description
-      t.string :mach_name
+      t.integer :mach_num
       t.integer :price
       t.integer :creator_id
       t.timestamps
