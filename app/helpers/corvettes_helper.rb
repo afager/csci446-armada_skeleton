@@ -1,4 +1,4 @@
-module corvettesHelper
+module CorvettesHelper
   
   def new_corvette_link
     link_to "create a #{ARMADA_COMPONENT.downcase}", new_members_corvette_path

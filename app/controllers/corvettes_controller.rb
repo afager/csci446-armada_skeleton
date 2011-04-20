@@ -1,4 +1,4 @@
-class corvettesController < ApplicationController
+class CorvettesController < ApplicationController
 
   CORVETTES_PER_PAGE = 15
 

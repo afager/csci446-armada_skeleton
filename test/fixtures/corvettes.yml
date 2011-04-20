@@ -3,12 +3,12 @@
 one:
   name: MyString
   description: MyText
-  mach_name: MyString
+  mach_num: 2
   price: 1
 
 two:
   name: MyString
   description: MyText
-  mach_name: MyString
+  mach_num: 2
   price: 1
 

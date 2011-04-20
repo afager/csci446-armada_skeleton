@@ -1,4 +1,4 @@
-class Admin::corvettesController < Admin::AdminController
+class Admin::CorvettesController < Admin::AdminController
   before_filter :find_corvette
 
   corvetteS_PER_PAGE = 15

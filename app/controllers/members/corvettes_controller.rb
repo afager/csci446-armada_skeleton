@@ -1,4 +1,4 @@
-class Members::corvettesController < Members::MembersController
+class Members::CorvettesController < Members::MembersController
 
   before_filter :find_corvette
 
