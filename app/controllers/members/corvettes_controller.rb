@@ -5,7 +5,7 @@ class Members::CorvettesController < Members::MembersController
   CORVETTES_PER_PAGE = 15
 
   def index
-    @corvettes = corvette.paginate(:page => params[:page], :per_page => CORVETTES_PER_PAGE)
+    @corvettes = Corvette.paginate(:page => params[:page], :per_page => CORVETTES_PER_PAGE)
     respond_to do |format|
       format.html
       format.xml { render :xml => @corvettes }
@@ -13,12 +13,12 @@ class Members::CorvettesController < Members::MembersController
   end
 
   def my
-    @corvettes = corvette.paginate(:page => params[:page],
-                               :per_page => corvetteS_PER_PAGE,
+    @corvettes = Corvette.paginate(:page => params[:page],
+                               :per_page => CORVETTES_PER_PAGE,
                                :conditions => ['creator_id = ?', current_user.id])
     respond_to do |format|
-     format.html
-     format.xml { render :xml => @corvettes }
+      format.html
+      format.xml { render :xml => @corvettes }
     end
   end
   
@@ -34,7 +34,7 @@ class Members::CorvettesController < Members::MembersController
   end
 
   def new
-    @corvette = corvette.new
+    @corvette = Corvette.new
     respond_to do |format|
       format.html
       format.xml { render :xml => @corvette }
@@ -42,11 +42,11 @@ class Members::CorvettesController < Members::MembersController
   end
 
   def create
-    @corvette = corvette.new(params[:corvette])
+    @corvette = Corvette.new(params[:corvette])
     @corvette.creator = current_user
     respond_to do |format|
       if @corvette.save
-        flash[:notice] = 'corvette was successfully created.'
+        flash[:notice] = 'Corvette was successfully created.'
         format.html { redirect_to members_corvette_path(@corvette) }
         format.xml { render :xml => @corvette, :status => :created, :location => @corvette }
       else
@@ -62,7 +62,7 @@ class Members::CorvettesController < Members::MembersController
   def update
     respond_to do |format|
       if @corvette.update_attributes(params[:corvette])
-        flash[:notice] = 'corvette was successfully updated.'
+        flash[:notice] = 'Corvette was successfully updated.'
         format.html { redirect_to members_corvette_path(@corvette) }
         format.xml { head :ok }
       else
@@ -90,7 +90,7 @@ class Members::CorvettesController < Members::MembersController
   private
 
     def find_corvette
-      @corvette = corvette.find(params[:id]) if params[:id]
+      @corvette = Corvette.find(params[:id]) if params[:id]
     end
 
 end

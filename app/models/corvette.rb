@@ -8,7 +8,7 @@ class Corvette < ActiveRecord::Base
                     :default_url => '/images/default_corvette.png',
                     :storage => :s3,
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-                    :path => "csciArmada/#{Rails.env}/:attachment/:id/:style.:extension"
+                    :path => "cs446/illogicians/#{Rails.env}/:attachment/:id/:style.:extension"
 
   belongs_to :creator, :class_name => "User"
 
