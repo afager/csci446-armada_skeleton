@@ -12,7 +12,7 @@
     #wrapper
       #masthead
         = userbar(current_user)
-        %h1= link_to "#{APP_TITLE} #{ARMADA_COMPONENT}, root_path, :title => 'Home Screen'
+        %h1= link_to "#{APP_TITLE} #{ARMADA_COMPONENT.pluralize}", root_path, :title => 'Home Screen'
         = menubar(current_user)
       #content
         - unless flash.empty?
