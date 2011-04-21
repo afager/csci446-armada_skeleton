@@ -1,19 +1,18 @@
 class User < ActiveRecord::Base
 
   acts_as_authentic
-  
-  validates_presence_of :role
 
   has_paper_trail
   
   belongs_to :role, :counter_cache => true
+  has_many :shields
 
-  has_many :corvettes
-  
   default_scope :include => :role
 
-  before_create :assign_default_role
-
+  before_validation_on_create :assign_default_role
+  
+  validates_presence_of :role
+  
   def role_symbols
     [role.name.downcase.to_sym]
   end
@@ -38,6 +37,7 @@ class User < ActiveRecord::Base
   def to_s
     self.full_name
   end
+  
   private
 
     def assign_default_role
