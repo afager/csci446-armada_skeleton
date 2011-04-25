@@ -1,5 +1,6 @@
 - content_for :title do
-  = "corvette #{@corvette}"
+  = ARMADA_COMPONENT
+  = @corvette
 
 %h2
   = "#{ARMADA_COMPONENT} \"#{@corvette}\""
@@ -23,8 +24,8 @@
     %strong Description:
     =h @corvette.description
   %p
-    %strong Material name:
-    =h @corvette.mach_name
+    %strong Mach num:
+    =h @corvette.mach_num
   %p
     %strong Price:
     =h @corvette.price
