@@ -10,7 +10,7 @@
 #
 production: 
   app: evening-sky-672
-  config:
+  config:&default
     BUNDLE_WITHOUT: "development:test"
 
 staging:
